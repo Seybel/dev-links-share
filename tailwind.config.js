@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {},
     colors: {
-      'darkgrey': '#333333',
+      'dark-grey': '#333333',
       'grey': '#737373',
       'purple': '#633CFF',
       'purple-hover': '#BEADFF',
@@ -24,6 +24,9 @@ export default {
       borderRadius: {
         'small': '8px'
       }
+    },
+    boxShadow: {
+      'light-purple': '0px 0px 32px 0px rgba(99, 60, 255, 0.25)'
     }
   },
 
