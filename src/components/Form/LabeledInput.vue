@@ -30,5 +30,4 @@ const handleChange = (e) => {
 </script>
 
 <style scoped>
-
 </style>
