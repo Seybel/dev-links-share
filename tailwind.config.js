@@ -18,7 +18,7 @@ export default {
       'red': '#FF3939'
     },
     fontFamily: {
-      sans: ['Instrument', 'Sans']
+      sans: ['Instrument Sans', 'Sans']
     },
     extend: {
       borderRadius: {
