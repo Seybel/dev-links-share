@@ -1,28 +1,21 @@
 <template>
     <div>
-        <h1 class="text-dark-grey">Welcome to Devlinks share</h1>
-        <LabeledInput>
-            <template v-slot:icon>
-                <EnvelopeIcon /> 
-            </template>
-        </LabeledInput>
+        <LoginForm @toggle="toggleForm"  v-if="isLoginIn" />
+        <SignupForm @toggle="toggleForm" v-else/>
     </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-import LabeledInput from '../components/Form/LabeledInput.vue'
-import EnvelopeIcon from '../components/Icons/EnvelopeIcon.vue'
+<script setup lang="ts">
+import { ref } from "vue";
+import LoginForm from "../components/UI/LoginForm.vue";
+import SignupForm from "../components/UI/SignupForm.vue";
 
-export default defineComponent({
-    components: {
-        LabeledInput,
-        EnvelopeIcon,
-    },
-    setup () {
-        return {}
-    }
-})
+const isLoginIn = ref(true)
+
+const toggleForm = () => {
+    isLoginIn.value = !isLoginIn.value 
+}
+
 </script>
 
 <style scoped>
