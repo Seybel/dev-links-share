@@ -34,7 +34,7 @@
 
 <script setup lang="ts">
 import Button from '../Elements/Button.vue';
-import LabeledInput from '../Form/LabeledInput.vue';
+import LabeledInput from './LabeledInput.vue';
 
 const emit = defineEmits(['toggle'])
 
