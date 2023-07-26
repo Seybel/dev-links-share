@@ -18,11 +18,11 @@
       <!-- <EmptyLink /> -->
       <div class="bg-light-grey rounded-2xl flex flex-col h-auto p-5 gap-12">
         <div class="flex justify-between">
-          <div class="flex font-bold text-base text-grey space-x-2">
+          <div class="flex font-bold text-base text-grey space-x-2 cursor-grab">
               <img src="../../assets/icons/icon-drag-and-drop.svg" alt="">
               <p>Link #1</p>
           </div>
-          <p class="text-grey text-base">Remove</p>
+          <p class="text-grey text-base cursor-pointer">Remove</p>
         </div>
         <div>
           <!-- Dropdown -->

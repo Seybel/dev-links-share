@@ -13,6 +13,7 @@ export default {
       'purple-hover': '#BEADFF',
       'light-purple': '#EFEBFF',
       'border': '#D9D9D9',
+      'grey-85': '#D9D9D9',
       'light-grey': '#FAFAFA',
       'white': '#FFFFFF',
       'red': '#FF3939'
