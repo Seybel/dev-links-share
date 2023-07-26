@@ -7,8 +7,8 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import LoginForm from "../components/UI/LoginForm.vue";
-import SignupForm from "../components/UI/SignupForm.vue";
+import LoginForm from "../components/Form/LoginForm.vue";
+import SignupForm from "../components/Form/SignupForm.vue";
 
 const isLoginIn = ref(true)
 
