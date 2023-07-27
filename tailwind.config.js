@@ -5,7 +5,6 @@ export default {
     "./src/**/*.{vue,js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
     colors: {
       'dark-grey': '#333333',
       'grey': '#737373',
@@ -24,6 +23,9 @@ export default {
     extend: {
       borderRadius: {
         'small': '8px'
+      },
+      gridTemplateColumns: {
+        '2-4': '2fr 4fr'
       }
     },
     boxShadow: {

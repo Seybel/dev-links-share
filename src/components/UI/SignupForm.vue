@@ -4,7 +4,7 @@
             <img src="../../assets/img/logo-devlinks-large.svg" alt="devlinks-logo">
         </div>
         <!-- <h1 class="text-dark-grey">Welcome to Devlinks share</h1> -->
-        <div class="bg-white p-14 rounded flex align-center justify-start self-center flex-col gap-y-2 w-[fit-content] ">
+        <div class="min-w-[500px] max-w-[50%] bg-white p-14 rounded flex align-center justify-start self-center flex-col gap-y-2 w-[fit-content] ">
             <h1 class="text-[2em] font-bold">Create account</h1>
             <p class="text-base font-normal text-grey mb-8">Let’s get you started sharing your links!</p>
             <LabeledInput :is-error="false" error-msg="Can’t be empty" placeholder="e.g. alex@email.com" class="mb-6" type="text" label="Email address" id="email">
@@ -34,7 +34,7 @@
 
 <script setup lang="ts">
 import Button from '../Elements/Button.vue';
-import LabeledInput from './LabeledInput.vue';
+import LabeledInput from '../Form/LabeledInput.vue';
 
 const emit = defineEmits(['toggle'])
 

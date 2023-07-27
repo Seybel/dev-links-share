@@ -6,23 +6,23 @@
         `"
         >{{ label }}</label>
         <div 
-            :class="`w-[100%] min-w-[440px] flex items-center justify-between py-3 px-3.5 gap-x-4 text-base color-dark-grey rounded-lg placeholder-current::placeholder border border-border bg-white
+            :class="`w-[100%] flex items-center justify-between py-3 px-3.5 gap-x-4 text-base color-dark-grey rounded-lg placeholder-current::placeholder border border-border bg-white
                 ${isFocused && 'outline-none border-purple shadow-light-purple'}
                 ${isError && 'border-red shadow-none'}
             `"
             >
-            <div class="flex justify-between align-center gap-x-4">
+            <div class="w-[100%] flex justify-between align-center gap-x-4">
                 <slot name="icon"></slot>
                 <input 
                     :id="id"
-                    class="text-dark-grey bg-white border-none outline-none placeholder-dark-grey placeholder-opacity-50"
+                    class="w-[100%] text-dark-grey bg-white border-none outline-none placeholder-dark-grey placeholder-opacity-50"
                     :type="type" @change="handleChange"
                     :placeholder="placeholder"
                     @focus="toggleFocus"
                     @blur="toggleFocus"
                 >
             </div>
-            <p v-if="isError" class="text-red text-sm font-normal">{{ errorMsg }}</p>
+            <p v-if="isError" class="text-red text-xs font-normal whitespace-nowrap">{{ errorMsg }}</p>
         </div>
     </div>
 </template>
