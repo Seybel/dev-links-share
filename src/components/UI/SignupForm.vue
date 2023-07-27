@@ -4,20 +4,20 @@
             <img src="../../assets/img/logo-devlinks-large.svg" alt="devlinks-logo">
         </div>
         <!-- <h1 class="text-dark-grey">Welcome to Devlinks share</h1> -->
-        <div class="bg-white p-14 rounded flex align-center justify-start self-center flex-col gap-y-2 w-[fit-content] ">
+        <div class="min-w-[500px] max-w-[50%] bg-white p-14 rounded flex align-center justify-start self-center flex-col gap-y-2 w-[fit-content] ">
             <h1 class="text-[2em] font-bold">Create account</h1>
             <p class="text-base font-normal text-grey mb-8">Let’s get you started sharing your links!</p>
-            <LabeledInput placeholder="e.g. alex@email.com" class="mb-6" type="text" label="Email address" id="email">
+            <LabeledInput :is-error="false" error-msg="Can’t be empty" placeholder="e.g. alex@email.com" class="mb-6" type="text" label="Email address" id="email">
                 <template v-slot:icon>
                     <img src="../../assets/icons/icon-email.svg" alt="email">
                 </template>
             </LabeledInput>
-            <LabeledInput placeholder="At least 8 characters" class="mb-3" type="password" label="Create password" id="password">
+            <LabeledInput :is-error="false" error-msg="Please check again" placeholder="At least 8 characters" class="mb-3" type="password" label="Create password" id="password">
                 <template v-slot:icon>
                     <img src="../../assets/icons/icon-password.svg" alt="password">
                 </template>
             </LabeledInput>
-            <LabeledInput placeholder="At least 8 characters" class="mb-3" type="password" label="Confirm password" id="password">
+            <LabeledInput :is-error="false" error-msg="Please check again" placeholder="At least 8 characters" class="mb-3" type="password" label="Confirm password" id="password">
                 <template v-slot:icon>
                     <img src="../../assets/icons/icon-password.svg" alt="password">
                 </template>
@@ -34,7 +34,7 @@
 
 <script setup lang="ts">
 import Button from '../Elements/Button.vue';
-import LabeledInput from './LabeledInput.vue';
+import LabeledInput from '../Form/LabeledInput.vue';
 
 const emit = defineEmits(['toggle'])
 
