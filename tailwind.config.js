@@ -15,7 +15,11 @@ export default {
       'grey-85': '#D9D9D9',
       'light-grey': '#FAFAFA',
       'white': '#FFFFFF',
-      'red': '#FF3939'
+      'red': '#FF3939',
+      'facebook': '#2442AC',
+      'github': '#1A1A1A',
+      'twitter': '#43B7E9',
+      'youtube': '#EE3939'
     },
     fontFamily: {
       sans: ['Instrument Sans', 'Sans']
@@ -29,7 +33,8 @@ export default {
       }
     },
     boxShadow: {
-      'light-purple': '0px 0px 32px 0px rgba(99, 60, 255, 0.25)'
+      'light-purple': '0px 0px 32px 0px rgba(99, 60, 255, 0.25)',
+      'light-shadow': '0px 0px 32px 0px rgba(0, 0, 0, 0.10)'
     }
   },
 

@@ -7,7 +7,7 @@
             <Button
                 
                 @click="setActiveLink('links')"
-                :custom-class="`flex items-center justify-center text-center h-[2.85em] min-w-[122px] border-none rounded text-base font-semibold
+                :custom-class="`flex items-center justify-center text-center h-[2.85em] min-w-[122px] border-none rounded-lg text-base font-semibold
                     ${isActiveLink == 'links' ? 'text-purple bg-light-purple' : 'text-grey bg-white'}
                     focus:outline-none hover:bg-white
                 `" 
@@ -19,7 +19,7 @@
             </Button>
             <Button
                 @click="setActiveLink('profile')"
-                :custom-class="`flex items-center justify-center text-center h-[2.85em] min-w-[122px] border-none rounded text-base font-semibold
+                :custom-class="`flex items-center justify-center text-center h-[2.85em] min-w-[122px] border-none rounded-lg text-base font-semibold
                     ${isActiveLink == 'profile' ? 'text-purple bg-light-purple' : 'text-grey bg-white'}
                     focus:outline-none hover:bg-white 
                 `" 
@@ -33,7 +33,7 @@
         <div class="">
             <Button content="Preview" 
                 :custom-class="`
-                    flex items-center justify-center text-purple text-center h-[2.85em] min-w-[122px] rounded border-purple bg-white font-semibold
+                    flex items-center justify-center text-purple text-center h-[2.85em] min-w-[122px] rounded-lg border-purple bg-white font-semibold
                 `"
             ></Button>
         </div>
