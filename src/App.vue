@@ -1,13 +1,25 @@
 <template>
   <div>
-    <!-- <Navbar></Navbar> -->
+    <Navbar v-if="showNavbar"></Navbar>
     <router-view></router-view>
   </div>
 </template>
 
 <script setup lang="ts">
-// import HelloWorld from "./components/HelloWorld.vue";
-// import Navbar from './components/UI/Navbar.vue';
+import { ref, watch } from 'vue';
+import Navbar from './components/Layout/Navbar.vue';
+import { useRouter } from 'vue-router';
+
+const showNavbar = ref(true);
+const router = useRouter();
+
+watch(
+  () => router.currentRoute.value.name,
+  (currentRouteName: any) => {
+    const hideNavbarRoutes = ['Devlinks.Preview'];
+    showNavbar.value = !hideNavbarRoutes.includes(currentRouteName);
+  }
+);
 </script>
 
 <style scoped>

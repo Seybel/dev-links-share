@@ -31,11 +31,13 @@
             </Button>
         </div>
         <div class="">
-            <Button content="Preview" 
+            <Button 
+                content="Preview" 
+                @click="setActiveLink('preview')"
                 :custom-class="`
                     flex items-center justify-center text-purple text-center h-[2.85em] min-w-[122px] rounded-lg border-purple bg-white font-semibold
                 `"
-            ></Button>
+            />
         </div>
     </div>
 </template>
@@ -43,8 +45,9 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import Button from '../Elements/Button.vue';
-import router from '../../../router';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 const isActiveLink = ref<string>('links');
 
 const setActiveLink = (path: string) => {

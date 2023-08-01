@@ -2,7 +2,7 @@
     <div>
         <div class="h-[40vh] w-[100%] bg-purple rounded-b-[2em] py-4 px-4" >
             <div class="flex items-center justify-between bg-white py-4 px-6 rounded-xl" >
-                <div class="">
+                <div @click.prevent="() => router.push({name: 'Devlinks.Links'})" class="cursor-pointer">
                     <Button content="Back to Editor" 
                         :custom-class="`
                             flex items-center justify-center text-purple text-center h-[2.85em] min-w-[122px] rounded-lg border-purple bg-white font-semibold
@@ -41,8 +41,9 @@
 import Button from '../components/Elements/Button.vue';
 import PreviewLinkButton from '../components/Elements/PreviewLinkButton.vue';
 import { AllPreviewBtn } from "../mock";
+import { useRouter } from 'vue-router'
 
-
+const router = useRouter();
 </script>
 
 <style scoped>
