@@ -18,14 +18,6 @@ export const AllPreviewBtn: PreviewBtn[] = [
     },
     {
         id: 2,
-        name: 'Frontend Mentor',
-        bg: 'bg-white',
-        iconName: '/src/assets/icons/icon-front-end-mentors.svg',
-        textColor: 'text-dark-grey',
-        border: 'border border-border'
-    },
-    {
-        id: 3,
         name: 'Facebook',
         bg: 'bg-facebook',
         iconName: '/src/assets/icons/icon-facebook-color.svg',
@@ -33,7 +25,7 @@ export const AllPreviewBtn: PreviewBtn[] = [
         border: ''
     },
     {
-        id: 4,
+        id: 3,
         name: 'Twitter',
         bg: 'bg-twitter',
         iconName: '/src/assets/icons/icon-twitter-color.svg',
@@ -41,7 +33,7 @@ export const AllPreviewBtn: PreviewBtn[] = [
         border: ''
     },
     {
-        id: 5,
+        id: 4,
         name: 'YouTube',
         bg: 'bg-youtube',
         iconName: '/src/assets/icons/icon-youtube-color.svg',
