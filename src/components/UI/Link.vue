@@ -24,7 +24,7 @@
           type="url"
           label="Link"
           id="link"
-          @value-change="customLinkHandler"
+          @value-change="updateDevLink"
         >
           <template v-slot:icon>
             <img src="../../assets/icons/icon-link.svg" alt="email" />
@@ -55,7 +55,8 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   (event: "removeLink", id: number): void;
-  (event: "addPlaform", platform: string): void;
+  (event: "updatePlatform", platform: string): void;
+  (event: "devLink", devLink: string): void;
 }>();
 
 const customLinkInput = ref("");
@@ -75,12 +76,12 @@ const removeLinkHandler = (val: any) => {
 };
 
 const changePlatformHandler = (val: string) => {
-    emit("addPlaform", val);
-    console.log(val);
+    emit("updatePlatform", val);
 }
 
-const customLinkHandler = (val: string) => {
+const updateDevLink = (val: string) => {
   customLinkInput.value = val;
+  emit("devLink", customLinkInput.value);
 };
 </script>
 

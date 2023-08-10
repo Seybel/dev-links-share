@@ -18,7 +18,7 @@
       </div>
       <EmptyLink v-if="!allLinks.length" />
       <div class="overflow-y-scroll max-h-[410px]" v-else>
-        <Link v-for="(link, index) in allLinks" :key="link.id" :idx="index" :linkItem="link" @remove-link="removeLink" />
+        <Link v-for="(link, index) in allLinks" :key="link.id" :idx="index" :linkItem="link" @remove-link="removeLink" @update-platform="updatePlatform" @dev-link="updateDevLink" />
       </div>
       <div class="flex justify-end mt-20">
         <Button
@@ -67,6 +67,10 @@ const removeLink = (id: number) => {
   if (index === -1) return;
   allLinks.splice(index, 1);
 }
+
+const updatePlatform = () => {}
+
+const updateDevLink = () => {}
 </script>
 
 <style scoped>
