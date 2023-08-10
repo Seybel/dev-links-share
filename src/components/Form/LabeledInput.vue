@@ -28,18 +28,19 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue';
+
 defineProps<{
-    label: string,
-    id: string,
-    type: string,
-    placeholder: string,
-    errorMsg: string,
-    isError: boolean
+    label?: string,
+    id?: string,
+    type?: string,
+    placeholder?: string,
+    errorMsg?: string,
+    isError?: boolean
 }>();
 
-import { ref } from 'vue'
-const emit = defineEmits(['valueChange', 'change'])
-const isFocused = ref(false)
+const emit = defineEmits(['valueChange', 'change']);
+const isFocused = ref(false);
 
 const toggleFocus = () => {
     isFocused.value = !isFocused.value
