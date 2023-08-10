@@ -10,3 +10,7 @@ export const generateRandomId = (length = 7): string => {
   
     return randId;
 }
+
+export const isNumber = (value: any): value is number => {
+  return typeof value === 'number' && !isNaN(value);
+}

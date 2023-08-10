@@ -1,16 +1,21 @@
 <template>
   <div>
-    <div class="bg-light-grey rounded-2xl flex flex-col h-auto p-5 gap-12">
+    <div class="bg-light-grey rounded-2xl flex flex-col h-auto p-5 gap-12 mb-6">
       <div class="flex justify-between">
         <div class="flex font-bold text-base text-grey space-x-2 cursor-grab">
           <img src="../../assets/icons/icon-drag-and-drop.svg" alt="" />
-          <p>Link #{{ props.linkItem.id  }}</p>
+          <p>Link #{{ idx + 1 }}</p>
         </div>
-        <p @click="removeLinkHandler" class="text-grey text-base cursor-pointer">Remove</p>
+        <p
+          @click="removeLinkHandler(link.id)"
+          class="text-grey text-base cursor-pointer"
+        >
+          Remove
+        </p>
       </div>
       <div>
         <!-- Dropdown -->
-        <Dropdown />
+        <Dropdown @change-platform="changePlatformHandler" />
       </div>
       <div>
         <LabeledInput
@@ -31,30 +36,52 @@
 </template>
 
 <script setup lang="ts">
-import { ref, defineProps } from "vue";
+import { ref, reactive, watch } from "vue";
 import LabeledInput from "../Form/LabeledInput.vue";
 import Dropdown from "../Elements/Dropdown.vue";
+import { isNumber } from "../../utils/randomId";
 
 interface LinkItem {
-  id: number,
-  platform: string,
-  linkId: string,
-  link: string
+  id?: number;
+  platform?: string;
+  linkId?: string;
+  link?: string;
 }
 
 const props = defineProps<{
-    linkItem: LinkItem
+  idx: number;
+  linkItem: LinkItem;
 }>();
 
-let customLink = ref("");
+const emit = defineEmits<{
+  (event: "removeLink", id: number): void;
+  (event: "addPlaform", platform: string): void;
+}>();
 
-const removeLinkHandler = () => {
+const customLinkInput = ref("");
+let link: LinkItem = reactive({});
 
+watch(
+  props.linkItem,
+  (newVal) => {
+    link = { ...link, ...newVal };
+  },
+  { immediate: true }
+);
+
+const removeLinkHandler = (val: any) => {
+  if (!isNumber(val)) return;
+  emit("removeLink", val);
+};
+
+const changePlatformHandler = (val: string) => {
+    emit("addPlaform", val);
+    console.log(val);
 }
 
 const customLinkHandler = (val: string) => {
-    customLink.value = val;
-}
+  customLinkInput.value = val;
+};
 </script>
 
 <style scoped></style>

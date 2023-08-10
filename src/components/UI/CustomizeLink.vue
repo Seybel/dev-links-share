@@ -17,8 +17,8 @@
         </p>
       </div>
       <EmptyLink v-if="!allLinks.length" />
-      <div v-else>
-        <Link v-for="link in allLinks" :key="link.id" :linkItem="link" />
+      <div class="overflow-y-scroll max-h-[410px]" v-else>
+        <Link v-for="(link, index) in allLinks" :key="link.id" :idx="index" :linkItem="link" @remove-link="removeLink" />
       </div>
       <div class="flex justify-end mt-20">
         <Button
@@ -47,7 +47,7 @@ interface LinkItem {
 const previewBg = { width: "46rem", height: "53rem" };
 const lastLinkId = ref(0);
 
-const allLinks: LinkItem[] = reactive([]);
+let allLinks: LinkItem[] = reactive([]);
 
 const addNewLink = () => {
   const randId = generateRandomId();
@@ -62,6 +62,11 @@ const addNewLink = () => {
   allLinks.push(newLink);
 }
 
+const removeLink = (id: number) => {
+  const index = allLinks.findIndex(link => link.id === id);
+  if (index === -1) return;
+  allLinks.splice(index, 1);
+}
 </script>
 
 <style scoped>
