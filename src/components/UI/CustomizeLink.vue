@@ -9,32 +9,24 @@
         </p>
       </div>
       <div
+        @click="addNewLink"
         class="bg-white border border-purple w-full rounded-lg p-2 hover:shadow-light-purple hover:bg-light-purple"
       >
         <p class="text-purple text-center font-semibold text-sm cursor-pointer">
           + Add new link
         </p>
       </div>
-      <!-- <EmptyLink /> -->
-      <div class="bg-light-grey rounded-2xl flex flex-col h-auto p-5 gap-12">
-        <div class="flex justify-between">
-          <div class="flex font-bold text-base text-grey space-x-2 cursor-grab">
-              <img src="../../assets/icons/icon-drag-and-drop.svg" alt="">
-              <p>Link #1</p>
-          </div>
-          <p class="text-grey text-base cursor-pointer">Remove</p>
-        </div>
-        <div>
-          <!-- Dropdown -->
-          <Dropdown />
-        </div>
-        <div>
-          <LabeledInput placeholder="e.g. https://www.github.com/seybel" class="mb-6 w-full" type="url" label="Link" id="link">
-                <template v-slot:icon>
-                    <img src="../../assets/icons/icon-link.svg" alt="email">
-                </template>
-            </LabeledInput>
-        </div>
+      <EmptyLink v-if="!allLinks.length" />
+      <div class="overflow-y-scroll max-h-[410px]" v-else>
+        <Link
+          v-for="(link, index) in allLinks"
+          :key="link.id"
+          :idx="index"
+          :linkItem="link"
+          @remove-link="removeLink"
+          @update-platform="updatePlatform"
+          @dev-link="updateDevLink"
+        />
       </div>
       <div class="flex justify-end mt-20">
         <Button
@@ -47,13 +39,46 @@
 </template>
 
 <script setup lang="ts">
+import { ref, reactive } from "vue";
 import Button from "../Elements/Button.vue";
 import EmptyLink from "../UI/EmptyLink.vue";
-import LabeledInput from "../Form/LabeledInput.vue";
-import Dropdown from "../Elements/Dropdown.vue";
+import Link from "./Link.vue";
+import { generateRandomId } from "../../utils/randomId";
+
+interface LinkItem {
+  id: number;
+  platform: string;
+  linkId: string;
+  link: string;
+}
 
 const previewBg = { width: "46rem", height: "53rem" };
+const lastLinkId = ref(0);
+
+let allLinks: LinkItem[] = reactive([]);
+
+const addNewLink = () => {
+  const randId = generateRandomId();
+  lastLinkId.value++;
+
+  const newLink = {
+    id: lastLinkId.value,
+    linkId: `link-${lastLinkId.value}${randId}`,
+    platform: "",
+    link: "",
+  };
+  allLinks.push(newLink);
+};
+
+const removeLink = (id: number) => {
+  const index = allLinks.findIndex((link) => link.id === id);
+  if (index === -1) return;
+  allLinks.splice(index, 1);
+};
+
+const updatePlatform = () => {};
+
+const updateDevLink = () => {};
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
