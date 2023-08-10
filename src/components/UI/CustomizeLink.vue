@@ -18,7 +18,15 @@
       </div>
       <EmptyLink v-if="!allLinks.length" />
       <div class="overflow-y-scroll max-h-[410px]" v-else>
-        <Link v-for="(link, index) in allLinks" :key="link.id" :idx="index" :linkItem="link" @remove-link="removeLink" @update-platform="updatePlatform" @dev-link="updateDevLink" />
+        <Link
+          v-for="(link, index) in allLinks"
+          :key="link.id"
+          :idx="index"
+          :linkItem="link"
+          @remove-link="removeLink"
+          @update-platform="updatePlatform"
+          @dev-link="updateDevLink"
+        />
       </div>
       <div class="flex justify-end mt-20">
         <Button
@@ -34,14 +42,14 @@
 import { ref, reactive } from "vue";
 import Button from "../Elements/Button.vue";
 import EmptyLink from "../UI/EmptyLink.vue";
-import Link from "./Link.vue"
+import Link from "./Link.vue";
 import { generateRandomId } from "../../utils/randomId";
 
 interface LinkItem {
-  id: number,
-  platform: string,
-  linkId: string,
-  link: string
+  id: number;
+  platform: string;
+  linkId: string;
+  link: string;
 }
 
 const previewBg = { width: "46rem", height: "53rem" };
@@ -57,21 +65,20 @@ const addNewLink = () => {
     id: lastLinkId.value,
     linkId: `link-${lastLinkId.value}${randId}`,
     platform: "",
-    link: ""
-  }
+    link: "",
+  };
   allLinks.push(newLink);
-}
+};
 
 const removeLink = (id: number) => {
-  const index = allLinks.findIndex(link => link.id === id);
+  const index = allLinks.findIndex((link) => link.id === id);
   if (index === -1) return;
   allLinks.splice(index, 1);
-}
+};
 
-const updatePlatform = () => {}
+const updatePlatform = () => {};
 
-const updateDevLink = () => {}
+const updateDevLink = () => {};
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
