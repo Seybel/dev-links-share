@@ -25,7 +25,7 @@
                     <h1 class="text-3xl font-bold text-dark-grey" >Aiden Pearce</h1>
                     <p class="tetx-base text-grey">aiden@example.com</p>
                     <div class="w-[100%] mt-10 max-h-[250px] flex flex-col gap-y-5 pr-2.5 overflow-y-auto">
-                        <PreviewLinkButton v-for="(item, idx) in AllPreviewBtn" :key="idx" :border="item.border" :bg="item.bg" :link-name="item.name" :text-color="item.textColor">
+                        <PreviewLinkButton v-for="(item, idx) in AllPreviewBtn" :key="idx" height="h-[56px]" :border="item.border" :bg="item.bg" :link-name="item.name" :text-color="item.textColor">
                             <template v-slot:icon>
                                 <img :src="item.iconName" :alt="item.name">
                             </template>
