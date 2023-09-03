@@ -19,7 +19,8 @@ export default {
       'facebook': '#2442AC',
       'github': '#1A1A1A',
       'twitter': '#43B7E9',
-      'youtube': '#EE3939'
+      'youtube': '#EE3939',
+      'light-grey': '#EEEEEE',
     },
     fontFamily: {
       sans: ['Instrument Sans', 'Sans']

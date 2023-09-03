@@ -1,5 +1,6 @@
 <template>
-    <div :class="`${bg} ${border} flex justify-between items-center px-4 h-[56px] w-[100%] rounded-md cursor-pointer p-4`">
+    <div v-if="isPlaceholder" :class="`bg-light-grey h-[44px] w-[100%] rounded-md`"></div>
+    <div v-else :class="`${height} ${bg} ${border} flex justify-between items-center px-4 w-[100%] rounded-md cursor-pointer py-2`">
         <div class="flex items-center gap-x-3">
             <slot name="icon"></slot>
             <p :class="`text-base font-normal ${textColor}`" >{{ linkName }}</p>
@@ -13,7 +14,9 @@ defineProps<{
     linkName: string,
     bg: string | 'grey',
     border?: string | '',
-    textColor?: string |'text-white'
+    textColor?: string |'text-white',
+    height?: string,
+    isPlaceholder?: boolean | false 
 }>()
 </script>
 
