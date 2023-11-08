@@ -10,14 +10,22 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{
-    linkName: string,
-    bg: string | 'grey',
-    border?: string | '',
-    textColor?: string |'text-white',
+interface Props {
+    linkName?: string,
+    bg: string,
+    border?: string,
+    textColor?: string,
     height?: string,
-    isPlaceholder?: boolean | false 
-}>()
+    isPlaceholder?: boolean
+}
+
+withDefaults(defineProps<Props>(), {
+    linkName: "",
+    bg: "grey",
+    border: "",
+    textColor: "text-white",
+    isPlaceholder: false
+})
 </script>
 
 <style scoped>

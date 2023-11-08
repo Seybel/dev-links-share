@@ -27,7 +27,7 @@
                 </PreviewLinkButton>
             </foreignObject>
            <foreignObject v-for="amount in dummyAmount" :key="amount" >
-            <PreviewLinkButton :isPlaceholder="true" />
+              <PreviewLinkButton :isPlaceholder="true" />
            </foreignObject>
           </div>
         </foreignObject>
