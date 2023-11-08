@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import HelloWorld from "./src/components/HelloWorld.vue";
 import Login from "./src/pages/Login.vue"
 import Links from "./src/pages/Links.vue"
 import Profile from "./src/pages/Profile.vue"
@@ -10,7 +9,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     name: "Devlinks.Home",
     path: "/",
-    component: HelloWorld,
+    component: Links, // TODO: change to home page
   },
   {
     name: "Devlinks.Login",
