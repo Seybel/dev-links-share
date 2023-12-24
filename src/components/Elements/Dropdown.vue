@@ -32,7 +32,7 @@
         >
           <ListboxOption
             as="template"
-            v-for="item in platform"
+            v-for="item in compPlatforms"
             :key="item.id"
             :value="item"
             v-slot="{ active, selected }"
@@ -66,7 +66,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from "vue";
+import { computed, ref, watch } from "vue";
 import {
   Listbox,
   ListboxButton,
@@ -89,7 +89,9 @@ import {
   gitlabIcon,
   hashnodeIcon,
   stackoverflowIcon,
-} from "../Icons/DropdownIcons.ts";
+  frontEndMentorIcon,
+} from "../Icons/DropdownIcons";
+import { store } from "../../store";
 
 const platform = [
   {
@@ -157,19 +159,28 @@ const platform = [
     name: "Stack Overflow",
     avatar: stackoverflowIcon,
   },
+  {
+    id: 14,
+    name: "Frontend Mentor",
+    avatar: frontEndMentorIcon,
+  },
 ];
 
 const emit = defineEmits<{
-  (event: "changePlatform", platform: string): void;
+  (event: "changePlatform", platform: number): void;
 }>();
 
-const selected = ref(platform[0]);
+const selected = ref(platform[store.links.length]);
 
 watch(
   selected,
   (newVal) => {
-    emit("changePlatform", newVal.name);
+    emit("changePlatform", newVal.id);
   },
   { immediate: true }
 );
+
+const compPlatforms = computed(() => {
+  return platform.filter(elem => !store.links.includes(elem.id))
+})
 </script>

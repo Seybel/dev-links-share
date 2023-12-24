@@ -12,6 +12,7 @@ import freecodecampIco from "../../assets/icons/icon-freecodecamp.svg"
 import gitlabIco from "../../assets/icons/icon-gitlab.svg"
 import hashnodeIco from "../../assets/icons/icon-hashnode.svg"
 import stackoverflowIco from "../../assets/icons/icon-stack-overflow.svg"
+import frontEndMentorIco from "../../assets/icons/icon-front-end-mentors.svg"
 
 
 export const githubIcon: string = githubIco;
@@ -27,3 +28,4 @@ export const freecodecampIcon: string = freecodecampIco;
 export const gitlabIcon: string = gitlabIco;
 export const hashnodeIcon: string = hashnodeIco;
 export const stackoverflowIcon: string = stackoverflowIco;
+export const frontEndMentorIcon: string = frontEndMentorIco;

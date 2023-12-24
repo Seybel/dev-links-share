@@ -1,6 +1,6 @@
 <template>
-  <div class="bg-white rounded-2xl" :style="previewBg">
-    <div class="flex flex-col gap-8 px-8 py-12">
+  <div class="bg-white rounded-2xl flex-col flex" :style="previewBg">
+    <div class="flex flex-col gap-8 px-8 py-12 pb-4">
       <div>
         <h1 class="text-darkgrey text-3xl font-bold">Customize your links</h1>
         <p class="text-grey text-base py-3">
@@ -17,24 +17,24 @@
         </p>
       </div>
       <EmptyLink v-if="!allLinks.length" />
-      <div class="overflow-y-scroll max-h-[410px]" v-else>
+      <div class="overflow-y-auto max-h-[63vh]" v-else>
         <Link
           v-for="(link, index) in allLinks"
           :key="link.id"
           :idx="index"
           :linkItem="link"
           @remove-link="removeLink"
-          @update-platform="updatePlatform"
+          @update-platform="updatePlatform($event, index)"
           @dev-link="updateDevLink"
         />
       </div>
-      <div class="flex justify-end mt-20">
+    </div>
+      <div class="flex justify-end mt-[auto] px-8 py-3 border-t-2 border-light-grey">
         <Button
           customClass="bg-purple text-white text-base font-semibold py-3 px-7"
           content="Save"
         />
       </div>
-    </div>
   </div>
 </template>
 
@@ -44,6 +44,7 @@ import Button from "../Elements/Button.vue";
 import EmptyLink from "../UI/EmptyLink.vue";
 import Link from "./Link.vue";
 import { generateRandomId } from "../../utils/randomId";
+import { store } from "../../store";
 
 interface LinkItem {
   id: number;
@@ -76,7 +77,9 @@ const removeLink = (id: number) => {
   allLinks.splice(index, 1);
 };
 
-const updatePlatform = () => {};
+const updatePlatform = (id: number, listIdx: number) => {
+  store.addLink(id, listIdx);
+};
 
 const updateDevLink = () => {};
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="bg-light-grey rounded-2xl flex flex-col h-auto p-5 gap-12 mb-6">
+    <div class="bg-light-grey rounded-2xl flex flex-col h-auto p-5 gap-4 mb-6">
       <div class="flex justify-between">
         <div class="flex font-bold text-base text-grey space-x-2 cursor-grab">
           <img src="../../assets/icons/icon-drag-and-drop.svg" alt="" />
@@ -55,7 +55,7 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   (event: "removeLink", id: number): void;
-  (event: "updatePlatform", platform: string): void;
+  (event: "updatePlatform", platform: number): void;
   (event: "devLink", devLink: string): void;
 }>();
 
@@ -75,7 +75,7 @@ const removeLinkHandler = (val: any) => {
   emit("removeLink", val);
 };
 
-const changePlatformHandler = (val: string) => {
+const changePlatformHandler = (val: number) => {
     emit("updatePlatform", val);
 }
 
