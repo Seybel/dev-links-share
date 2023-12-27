@@ -15,6 +15,7 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue';
+import { store } from '../../store';
 
 const previewStyle = computed(() => {
     const style: Record<string, string> = {};
@@ -39,6 +40,7 @@ const handleInput = (event: Event) => {
         const reader = new FileReader();
         reader.onload = (e) => {
             imageValue.value = e.target?.result as string;
+            store.setAvatar(imageValue.value)
         };
         reader.readAsDataURL(input.files[0]);
       } else {

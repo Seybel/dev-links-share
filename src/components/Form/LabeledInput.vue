@@ -16,8 +16,10 @@
                 <input 
                     :id="id"
                     class="w-[100%] text-dark-grey bg-white border-none outline-none placeholder-dark-grey placeholder-opacity-50"
-                    :type="type" @change="handleChange"
+                    :type="type"
+                    :value="value" 
                     :placeholder="placeholder"
+                    @input="handleChange"
                     @focus="toggleFocus"
                     @blur="toggleFocus"
                 >
@@ -37,6 +39,7 @@ defineProps<{
     placeholder?: string,
     errorMsg?: string,
     isError?: boolean
+    value?: string
 }>();
 
 const emit = defineEmits(['valueChange', 'change']);

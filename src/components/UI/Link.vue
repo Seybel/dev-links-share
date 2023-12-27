@@ -15,7 +15,7 @@
       </div>
       <div>
         <!-- Dropdown -->
-        <Dropdown @change-platform="changePlatformHandler" />
+        <Dropdown :currentLinkId="currentLinkId" @change-platform="changePlatformHandler" />
       </div>
       <div>
         <LabeledInput
@@ -24,6 +24,7 @@
           type="url"
           label="Link"
           id="link"
+          :value="link.link"
           @value-change="updateDevLink"
         >
           <template v-slot:icon>
@@ -40,32 +41,27 @@ import { ref, reactive, watch } from "vue";
 import LabeledInput from "../Form/LabeledInput.vue";
 import Dropdown from "../Elements/Dropdown.vue";
 import { isNumber } from "../../utils/randomId";
-
-interface LinkItem {
-  id?: number;
-  platform?: string;
-  linkId?: string;
-  link?: string;
-}
+import { PreviewBtn } from "../../mock";
 
 const props = defineProps<{
   idx: number;
-  linkItem: LinkItem;
+  linkItem: PreviewBtn;
+  currentLinkId: number;
 }>();
 
 const emit = defineEmits<{
   (event: "removeLink", id: number): void;
-  (event: "updatePlatform", platform: number): void;
+  (event: "updatePlatform", platform: PreviewBtn): void;
   (event: "devLink", devLink: string): void;
 }>();
 
 const customLinkInput = ref("");
-let link: LinkItem = reactive({});
+let link = ref<PreviewBtn>({});
 
 watch(
-  props.linkItem,
+  () => props.linkItem,
   (newVal) => {
-    link = { ...link, ...newVal };
+    link.value = { ...link, ...newVal };
   },
   { immediate: true }
 );
@@ -75,7 +71,7 @@ const removeLinkHandler = (val: any) => {
   emit("removeLink", val);
 };
 
-const changePlatformHandler = (val: number) => {
+const changePlatformHandler = (val: PreviewBtn) => {
     emit("updatePlatform", val);
 }
 

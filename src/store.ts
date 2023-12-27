@@ -1,23 +1,49 @@
 import { reactive } from "vue";
+import { PreviewBtn } from "./mock";
 
 interface Store {
-    links: number[]
-    userName: string
+    links: PreviewBtn[]
+    firstName: string
+    lastName: string
     email: string
     avatarUrl?: string
-    addLink: (id: number, listIdx: number) => void
-    removeLink: (id: number) => void
+    addLink: (arg: PreviewBtn) => void
+    updateLink: (arg: PreviewBtn, idx: number) => void
+    removeLink: (id: number, idx: number) => void
+    setFirstName: (name: string) => void
+    setlastName: (name: string) => void
+    setEamil: (name: string) => void
+    setAvatar: (name: string) => void
 }
 
 export const store = reactive<Store>({
     links: [],
-    userName: 'Aiden Pearce',
+    firstName: 'Aiden',
+    lastName: 'Pearce',
     email: 'aiden@example.com',
-    avatarUrl: '/src/assets/control_man.png',
-    addLink(id, listIdx){
-        this.links[listIdx] = id
+    avatarUrl: '',
+    addLink(platform){
+        this.links.push(platform)
     },
-    removeLink(id) {
-        this.links = this.links.filter(val => val != id)
+    updateLink(platform, idx){
+        this.links[idx] = {
+            ...this.links[idx],
+            ...platform
+        }
     },
+    removeLink(id, idx) {
+        this.links.splice(idx, 1)
+    },
+    setFirstName(val){
+        this.firstName = val
+    },
+    setlastName(val){
+        this.lastName = val
+    },
+    setEamil(val){
+        this.email = val
+    },
+    setAvatar(val){
+        this.avatarUrl = val
+    }
 })

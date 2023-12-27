@@ -1,10 +1,12 @@
 export interface PreviewBtn {
-    id: number,
-    name: string,
-    bg: string,
-    iconName: string, 
+    id?: number,
+    name?: string,
+    bg?: string,
+    iconName?: string, 
     textColor?: string,
     border?: string,
+    link?: string
+    avatar?: string
 }
 
 export const AllPreviewBtn: PreviewBtn[] = [

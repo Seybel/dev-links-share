@@ -23,7 +23,8 @@
           :key="link.id"
           :idx="index"
           :linkItem="link"
-          @remove-link="removeLink"
+          :currentLinkId="currentLinkId"
+          @remove-link="removeLink($event, index)"
           @update-platform="updatePlatform($event, index)"
           @dev-link="updateDevLink"
         />
@@ -39,46 +40,52 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from "vue";
+import { ref, reactive, onMounted } from "vue";
 import Button from "../Elements/Button.vue";
 import EmptyLink from "../UI/EmptyLink.vue";
 import Link from "./Link.vue";
 import { generateRandomId } from "../../utils/randomId";
 import { store } from "../../store";
-
-interface LinkItem {
-  id: number;
-  platform: string;
-  linkId: string;
-  link: string;
-}
+import { AllPreviewBtn, PreviewBtn } from "../../mock";
 
 const previewBg = { width: "46rem", height: "53rem" };
-const lastLinkId = ref(0);
+const nextLinkId = ref(null);
+const currentLinkId = ref(null)
 
-let allLinks: LinkItem[] = reactive([]);
+onMounted(() => {
+  generateNextId()
+})
+
+let allLinks: PreviewBtn[] = reactive([]);
 
 const addNewLink = () => {
-  const randId = generateRandomId();
-  lastLinkId.value++;
-
+  currentLinkId.value = nextLinkId.value
   const newLink = {
-    id: lastLinkId.value,
-    linkId: `link-${lastLinkId.value}${randId}`,
-    platform: "",
+    id: nextLinkId.value,
+    name: "",
     link: "",
   };
   allLinks.push(newLink);
+  store.addLink(newLink);
+  generateNextId()
 };
 
-const removeLink = (id: number) => {
-  const index = allLinks.findIndex((link) => link.id === id);
-  if (index === -1) return;
-  allLinks.splice(index, 1);
+const generateNextId = () => {
+  let selectedPlatformIds = store.links.map(link => link.id)
+  let allPlatformIds = AllPreviewBtn.map(btn => btn.id)
+  let unSelectedPlatformIds = allPlatformIds.filter(id => !selectedPlatformIds.includes(id))
+  nextLinkId.value = unSelectedPlatformIds[0]
+}
+
+const removeLink = (id: number, idx: number) => {
+  allLinks.splice(idx, 1);
+  store.removeLink(id, idx)
+  generateNextId()
 };
 
-const updatePlatform = (id: number, listIdx: number) => {
-  store.addLink(id, listIdx);
+const updatePlatform = (val: PreviewBtn, idx: number) => {
+  store.updateLink(val, idx);
+  generateNextId()
 };
 
 const updateDevLink = () => {};

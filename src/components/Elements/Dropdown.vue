@@ -9,11 +9,11 @@
       >
         <span class="flex items-center">
           <img
-            :src="selected.avatar"
+            :src="selected?.avatar"
             alt=""
             class="h-5 w-5 flex-shrink-0 rounded-full"
           />
-          <span class="ml-3 block truncate">{{ selected.name }}</span>
+          <span class="ml-3 block truncate">{{ selected?.name }}</span>
         </span>
         <span
           class="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-3"
@@ -66,7 +66,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, watch } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 import {
   Listbox,
   ListboxButton,
@@ -92,8 +92,17 @@ import {
   frontEndMentorIcon,
 } from "../Icons/DropdownIcons";
 import { store } from "../../store";
+import { PreviewBtn } from "../../mock";
 
-const platform = [
+const props = defineProps<{
+  currentLinkId: number;
+}>();
+
+const emit = defineEmits<{
+  (event: "changePlatform", platform: PreviewBtn): void;
+}>();
+
+const platform = ref([
   {
     id: 1,
     name: "GitHub",
@@ -164,23 +173,43 @@ const platform = [
     name: "Frontend Mentor",
     avatar: frontEndMentorIcon,
   },
-];
+]);
 
-const emit = defineEmits<{
-  (event: "changePlatform", platform: number): void;
-}>();
+const compPlatforms = ref([])
+const selected = ref();
 
-const selected = ref(platform[store.links.length]);
+const updatePlatform = () => {
+  if(store.links?.length > 0){
+    compPlatforms.value = [] 
+    let linkIds = store.links.map(link => link?.id)
+    platform.value.forEach(elem => {
+      if (!linkIds.includes(elem.id)) {
+        compPlatforms.value.push(elem)
+      }
+    })
+  } else {
+    compPlatforms.value = platform.value
+  }
+  
+}
 
 watch(
   selected,
   (newVal) => {
-    emit("changePlatform", newVal.id);
+    emit("changePlatform", newVal);
   },
   { immediate: true }
 );
 
-const compPlatforms = computed(() => {
-  return platform.filter(elem => !store.links.includes(elem.id))
+watch(
+  () => store.links,
+  () => {
+    updatePlatform()
+  },
+  {immediate: true, deep: true}
+)
+
+onMounted(() => {
+  selected.value = platform.value.filter(plat => plat.id == props.currentLinkId)[0]
 })
 </script>
