@@ -1,3 +1,19 @@
+import {
+    githubIcon,
+    twitterIcon,
+    linkendInIcon,
+    youtubeIcon,
+    facebookIcon,
+    twitchIcon,
+    devtoIcon,
+    codewarsIcon,
+    codepenIcon,
+    freecodecampIcon,
+    gitlabIcon,
+    hashnodeIcon,
+    stackoverflowIcon,
+    frontEndMentorIcon,
+  } from "./components/Icons/DropdownIcons";
 export interface PreviewBtn {
     id?: number,
     name?: string,
@@ -123,3 +139,76 @@ export const AllPreviewBtn: PreviewBtn[] = [
         border: 'border-border border'
     },
 ] 
+
+export const platform = [
+    {
+      id: 1,
+      name: "GitHub",
+      avatar: githubIcon,
+    },
+    {
+      id: 2,
+      name: "Twitter",
+      avatar: twitterIcon,
+    },
+    {
+      id: 3,
+      name: "LinkedIn",
+      avatar: linkendInIcon,
+    },
+    {
+      id: 4,
+      name: "YouTube",
+      avatar: youtubeIcon,
+    },
+    {
+      id: 5,
+      name: "Facebook",
+      avatar: facebookIcon,
+    },
+    {
+      id: 6,
+      name: "Twitch",
+      avatar: twitchIcon,
+    },
+    {
+      id: 7,
+      name: "Dev.to",
+      avatar: devtoIcon,
+    },
+    {
+      id: 8,
+      name: "Codewars",
+      avatar: codewarsIcon,
+    },
+    {
+      id: 9,
+      name: "Codepen",
+      avatar: codepenIcon,
+    },
+    {
+      id: 10,
+      name: "freeCodeCamp",
+      avatar: freecodecampIcon,
+    },
+    {
+      id: 11,
+      name: "Gitlab",
+      avatar: gitlabIcon,
+    },
+    {
+      id: 12,
+      name: "Hashnode",
+      avatar: hashnodeIcon,
+    },
+    {
+      id: 13,
+      name: "Stack Overflow",
+      avatar: stackoverflowIcon,
+    },
+    {
+      id: 14,
+      name: "Frontend Mentor",
+      avatar: frontEndMentorIcon,
+    },
+  ];

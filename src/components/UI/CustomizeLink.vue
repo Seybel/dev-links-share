@@ -40,32 +40,37 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, onMounted } from "vue";
+import { ref, reactive, onMounted, onBeforeMount } from "vue";
 import Button from "../Elements/Button.vue";
 import EmptyLink from "../UI/EmptyLink.vue";
 import Link from "./Link.vue";
 import { generateRandomId } from "../../utils/randomId";
 import { store } from "../../store";
-import { AllPreviewBtn, PreviewBtn } from "../../mock";
+import { AllPreviewBtn, PreviewBtn, platform } from "../../mock";
 
 const previewBg = { width: "46rem", height: "53rem" };
 const nextLinkId = ref(null);
 const currentLinkId = ref(null)
 
+let allLinks = ref<PreviewBtn[]>([]);
+
 onMounted(() => {
   generateNextId()
+  if (store.links?.length) {
+    allLinks.value = store.links
+    currentLinkId.value = nextLinkId.value
+  }
 })
-
-let allLinks: PreviewBtn[] = reactive([]);
 
 const addNewLink = () => {
   currentLinkId.value = nextLinkId.value
+  const next = platform.filter(elem => elem.id == nextLinkId.value)[0]
   const newLink = {
-    id: nextLinkId.value,
     name: "",
     link: "",
+    ...next,
   };
-  allLinks.push(newLink);
+  allLinks.value.push(newLink);
   store.addLink(newLink);
   generateNextId()
 };
@@ -78,8 +83,8 @@ const generateNextId = () => {
 }
 
 const removeLink = (id: number, idx: number) => {
-  allLinks.splice(idx, 1);
-  store.removeLink(id, idx)
+  allLinks.value.splice(idx, 1);
+  store.removeLink(idx)
   generateNextId()
 };
 

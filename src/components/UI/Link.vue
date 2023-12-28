@@ -15,7 +15,7 @@
       </div>
       <div>
         <!-- Dropdown -->
-        <Dropdown :currentLinkId="currentLinkId" @change-platform="changePlatformHandler" />
+        <Dropdown :idx="idx" :currentLinkId="currentLinkId" @change-platform="changePlatformHandler" />
       </div>
       <div>
         <LabeledInput

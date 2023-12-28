@@ -75,105 +75,17 @@ import {
   ListboxOptions,
 } from "@headlessui/vue";
 
-import {
-  githubIcon,
-  twitterIcon,
-  linkendInIcon,
-  youtubeIcon,
-  facebookIcon,
-  twitchIcon,
-  devtoIcon,
-  codewarsIcon,
-  codepenIcon,
-  freecodecampIcon,
-  gitlabIcon,
-  hashnodeIcon,
-  stackoverflowIcon,
-  frontEndMentorIcon,
-} from "../Icons/DropdownIcons";
 import { store } from "../../store";
-import { PreviewBtn } from "../../mock";
+import { PreviewBtn, platform } from "../../mock";
 
 const props = defineProps<{
   currentLinkId: number;
+  idx: number;
 }>();
 
 const emit = defineEmits<{
   (event: "changePlatform", platform: PreviewBtn): void;
 }>();
-
-const platform = ref([
-  {
-    id: 1,
-    name: "GitHub",
-    avatar: githubIcon,
-  },
-  {
-    id: 2,
-    name: "Twitter",
-    avatar: twitterIcon,
-  },
-  {
-    id: 3,
-    name: "LinkedIn",
-    avatar: linkendInIcon,
-  },
-  {
-    id: 4,
-    name: "YouTube",
-    avatar: youtubeIcon,
-  },
-  {
-    id: 5,
-    name: "Facebook",
-    avatar: facebookIcon,
-  },
-  {
-    id: 6,
-    name: "Twitch",
-    avatar: twitchIcon,
-  },
-  {
-    id: 7,
-    name: "Dev.to",
-    avatar: devtoIcon,
-  },
-  {
-    id: 8,
-    name: "Codewars",
-    avatar: codewarsIcon,
-  },
-  {
-    id: 9,
-    name: "Codepen",
-    avatar: codepenIcon,
-  },
-  {
-    id: 10,
-    name: "freeCodeCamp",
-    avatar: freecodecampIcon,
-  },
-  {
-    id: 11,
-    name: "Gitlab",
-    avatar: gitlabIcon,
-  },
-  {
-    id: 12,
-    name: "Hashnode",
-    avatar: hashnodeIcon,
-  },
-  {
-    id: 13,
-    name: "Stack Overflow",
-    avatar: stackoverflowIcon,
-  },
-  {
-    id: 14,
-    name: "Frontend Mentor",
-    avatar: frontEndMentorIcon,
-  },
-]);
 
 const compPlatforms = ref([])
 const selected = ref();
@@ -182,15 +94,14 @@ const updatePlatform = () => {
   if(store.links?.length > 0){
     compPlatforms.value = [] 
     let linkIds = store.links.map(link => link?.id)
-    platform.value.forEach(elem => {
+    platform.forEach(elem => {
       if (!linkIds.includes(elem.id)) {
         compPlatforms.value.push(elem)
       }
     })
   } else {
-    compPlatforms.value = platform.value
+    compPlatforms.value = platform
   }
-  
 }
 
 watch(
@@ -198,7 +109,7 @@ watch(
   (newVal) => {
     emit("changePlatform", newVal);
   },
-  { immediate: true }
+  // { immediate: true }
 );
 
 watch(
@@ -210,6 +121,10 @@ watch(
 )
 
 onMounted(() => {
-  selected.value = platform.value.filter(plat => plat.id == props.currentLinkId)[0]
+  if (store.links?.length > 0) {
+    selected.value = store.links[props.idx]
+  } else {
+    selected.value = platform.filter(plat => plat.id == props.currentLinkId)[0]
+  }
 })
 </script>

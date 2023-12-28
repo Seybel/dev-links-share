@@ -9,7 +9,7 @@ interface Store {
     avatarUrl?: string
     addLink: (arg: PreviewBtn) => void
     updateLink: (arg: PreviewBtn, idx: number) => void
-    removeLink: (id: number, idx: number) => void
+    removeLink: (idx: number) => void
     setFirstName: (name: string) => void
     setlastName: (name: string) => void
     setEamil: (name: string) => void
@@ -23,7 +23,12 @@ export const store = reactive<Store>({
     email: 'aiden@example.com',
     avatarUrl: '',
     addLink(platform){
-        this.links.push(platform)
+        if(this.links.every(link => link.id != platform.id)){
+            this.links.push(platform)
+        } else {
+            let idx = this.links.findIndex(link => link.id == platform.id)
+            this.updateLink(platform, idx)
+        }
     },
     updateLink(platform, idx){
         this.links[idx] = {
@@ -31,7 +36,7 @@ export const store = reactive<Store>({
             ...platform
         }
     },
-    removeLink(id, idx) {
+    removeLink(idx) {
         this.links.splice(idx, 1)
     },
     setFirstName(val){
