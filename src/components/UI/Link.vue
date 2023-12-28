@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="bg-light-grey rounded-2xl flex flex-col h-auto p-5 gap-12 mb-6">
+    <div class="bg-light-grey rounded-2xl flex flex-col h-auto p-5 gap-4 mb-6">
       <div class="flex justify-between">
         <div class="flex font-bold text-base text-grey space-x-2 cursor-grab">
           <img src="../../assets/icons/icon-drag-and-drop.svg" alt="" />
@@ -15,7 +15,7 @@
       </div>
       <div>
         <!-- Dropdown -->
-        <Dropdown @change-platform="changePlatformHandler" />
+        <Dropdown :idx="idx" :currentLinkId="currentLinkId" @change-platform="changePlatformHandler" />
       </div>
       <div>
         <LabeledInput
@@ -24,6 +24,7 @@
           type="url"
           label="Link"
           id="link"
+          :value="linkItem.link"
           @value-change="updateDevLink"
         >
           <template v-slot:icon>
@@ -40,34 +41,29 @@ import { ref, reactive, watch } from "vue";
 import LabeledInput from "../Form/LabeledInput.vue";
 import Dropdown from "../Elements/Dropdown.vue";
 import { isNumber } from "../../utils/randomId";
-
-interface LinkItem {
-  id?: number;
-  platform?: string;
-  linkId?: string;
-  link?: string;
-}
+import { PreviewBtn } from "../../mock";
 
 const props = defineProps<{
   idx: number;
-  linkItem: LinkItem;
+  linkItem: PreviewBtn;
+  currentLinkId: number;
 }>();
 
 const emit = defineEmits<{
   (event: "removeLink", id: number): void;
-  (event: "updatePlatform", platform: string): void;
+  (event: "updatePlatform", platform: PreviewBtn): void;
   (event: "devLink", devLink: string): void;
 }>();
 
 const customLinkInput = ref("");
-let link: LinkItem = reactive({});
+let link: PreviewBtn = {}
 
 watch(
-  props.linkItem,
+  () => props.linkItem,
   (newVal) => {
     link = { ...link, ...newVal };
   },
-  { immediate: true }
+  { immediate: true, deep: true }
 );
 
 const removeLinkHandler = (val: any) => {
@@ -75,13 +71,14 @@ const removeLinkHandler = (val: any) => {
   emit("removeLink", val);
 };
 
-const changePlatformHandler = (val: string) => {
-    emit("updatePlatform", val);
+const changePlatformHandler = (val: PreviewBtn) => {
+  link = { ...link, ...val}
+  emit("updatePlatform", val);
 }
 
 const updateDevLink = (val: string) => {
-  customLinkInput.value = val;
-  emit("devLink", customLinkInput.value);
+  link.link = val;
+  emit('updatePlatform', link)
 };
 </script>
 

@@ -21,6 +21,15 @@ export default {
       'twitter': '#43B7E9',
       'youtube': '#EE3939',
       'light-grey': '#EEEEEE',
+      'linkedin': '#2D68FF',
+      'twitch': '#EE3FC8',
+      'devto': '#333333',
+      'codewars': '#8A1A50',
+      'freecodecamp': '#302267',
+      'gitlab': '#EB4925',
+      'hashnode': '#0330D1',
+      'stack-overflow': '#EC7100',
+      'frontend-mentor': '#ffffff',
     },
     fontFamily: {
       sans: ['Instrument Sans', 'Sans']

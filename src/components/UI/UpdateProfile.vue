@@ -23,15 +23,15 @@
         <div class="bg-light-grey rounded-2xl flex flex-col items-center h-auto p-5 gap-2">
             <div class="grid grid-cols-2-4 w-[100%] items-center">
                 <p class="text-base font-normal text-grey">First name*</p>
-                <LabeledInput :is-error="false" errorMsg="Can’t be empty" placeholder="e.g. Optimus" class="" type="text" label="" id="firstName" />
+                <LabeledInput @valueChange="updateFirstName" :value="firstName" :is-error="false" errorMsg="Can’t be empty" placeholder="e.g. Optimus" class="" type="text" label="" id="firstName" />
             </div>
             <div class="grid grid-cols-2-4 w-[100%] items-center">
                 <p class="text-base font-normal text-grey">Last name*</p>
-                <LabeledInput :is-error="false" errorMsg="Can’t be empty" placeholder="e.g. Prime" class="" type="text" label="" id="lastName" />
+                <LabeledInput @valueChange="updateLastName" :value="lastName" :is-error="false" errorMsg="Can’t be empty" placeholder="e.g. Prime" class="" type="text" label="" id="lastName" />
             </div>
             <div class="grid grid-cols-2-4 w-[100%] items-center">
                 <p class="text-base font-normal text-grey">Email</p>
-                <LabeledInput :is-error="false" errorMsg="Can’t be empty" placeholder="e.g. https://www.github.com/seybel" class="" type="email" label="" id="email" />
+                <LabeledInput @valueChange="updateEmail" :value="email" :is-error="false" errorMsg="Can’t be empty" placeholder="e.g. https://www.github.com/seybel" class="" type="email" label="" id="email" />
             </div>
         </div>
         <div class="flex justify-end mt-20">
@@ -45,11 +45,43 @@
   </template>
   
   <script setup lang="ts">
+  import { ref, watch } from "vue";
+  import { store } from "../../store";
   import Button from "../Elements/Button.vue";
   import ImageUploader from "../Form/ImageUploader.vue";
   import LabeledInput from "../Form/LabeledInput.vue";
   
   const previewBg = { width: "46rem", height: "53rem" };
+  const firstName = ref('')
+  const lastName = ref('')
+  const email = ref('')
+
+  const updateFirstName = (val: string) => {
+    store.setFirstName(val)
+  }
+  const updateLastName = (val: string) => {
+    store.setlastName(val)
+  }
+  const updateEmail = (val: string) => {
+    store.setEamil(val)
+  }
+
+  watch(
+    () => store.firstName,
+    (val) => firstName.value = val,
+    {immediate: true}
+  )
+  watch(
+    () => store.lastName,
+    (val) => lastName.value = val,
+    {immediate: true}
+  )
+  watch(
+    () => store.email,
+    (val) => email.value = val,
+    {immediate: true}
+  )
+
   </script>
   
   <style scoped>

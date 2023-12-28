@@ -1,10 +1,28 @@
+import {
+    githubIcon,
+    twitterIcon,
+    linkendInIcon,
+    youtubeIcon,
+    facebookIcon,
+    twitchIcon,
+    devtoIcon,
+    codewarsIcon,
+    codepenIcon,
+    freecodecampIcon,
+    gitlabIcon,
+    hashnodeIcon,
+    stackoverflowIcon,
+    frontEndMentorIcon,
+  } from "./components/Icons/DropdownIcons";
 export interface PreviewBtn {
-    id: number,
-    name: string,
-    bg: string,
-    iconName: string, 
+    id?: number,
+    name?: string,
+    bg?: string,
+    iconName?: string, 
     textColor?: string,
     border?: string,
+    link?: string
+    avatar?: string
 }
 
 export const AllPreviewBtn: PreviewBtn[] = [
@@ -18,17 +36,17 @@ export const AllPreviewBtn: PreviewBtn[] = [
     },
     {
         id: 2,
-        name: 'Facebook',
-        bg: 'bg-facebook',
-        iconName: '/src/assets/icons/icon-facebook-color.svg',
+        name: 'Twitter',
+        bg: 'bg-twitter',
+        iconName: '/src/assets/icons/icon-twitter-color.svg',
         textColor: 'text-white',
         border: ''
     },
     {
         id: 3,
-        name: 'Twitter',
-        bg: 'bg-twitter',
-        iconName: '/src/assets/icons/icon-twitter-color.svg',
+        name: 'LinkedIn',
+        bg: 'bg-linkedin',
+        iconName: '/src/assets/icons/icon-linkedin-color.svg',
         textColor: 'text-white',
         border: ''
     },
@@ -40,4 +58,157 @@ export const AllPreviewBtn: PreviewBtn[] = [
         textColor: 'text-white',
         border: ''
     },
+    {
+        id: 5,
+        name: 'Facebook',
+        bg: 'bg-facebook',
+        iconName: '/src/assets/icons/icon-facebook-color.svg',
+        textColor: 'text-white',
+        border: ''
+    },
+    {
+        id: 6,
+        name: 'Twitch',
+        bg: 'bg-twitch',
+        iconName: '/src/assets/icons/icon-twitch-color.svg',
+        textColor: 'text-white',
+        border: ''
+    },
+    {
+        id: 7,
+        name: 'Dev.to',
+        bg: 'bg-devto',
+        iconName: '/src/assets/icons/icon-devto-color.svg',
+        textColor: 'text-white',
+        border: ''
+    },
+    {
+        id: 8,
+        name: 'Codewars',
+        bg: 'bg-codewars',
+        iconName: '/src/assets/icons/icon-codewars-color.svg',
+        textColor: 'text-white',
+        border: ''
+    },
+    {
+        id: 9,
+        name: 'Codepen',
+        bg: 'bg-dark-grey',
+        iconName: '/src/assets/icons/icon-codepen-color.svg',
+        textColor: 'text-white',
+        border: ''
+    },
+    {
+        id: 10,
+        name: 'freeCodeCamp',
+        bg: 'bg-freecodecamp',
+        iconName: '/src/assets/icons/icon-freecodecamp-color.svg',
+        textColor: 'text-white',
+        border: ''
+    },
+    {
+        id: 11,
+        name: 'Gitlab',
+        bg: 'bg-gitlab',
+        iconName: '/src/assets/icons/icon-gitlab-color.svg',
+        textColor: 'text-white',
+        border: ''
+    },
+    {
+        id: 12,
+        name: 'Hashnode',
+        bg: 'bg-hashnode',
+        iconName: '/src/assets/icons/icon-hashnode-color.svg',
+        textColor: 'text-white',
+        border: ''
+    },
+    {
+        id: 13,
+        name: 'Stack Overflow',
+        bg: 'bg-stack-overflow',
+        iconName: '/src/assets/icons/icon-stack-overflow-color.svg',
+        textColor: 'text-white',
+        border: ''
+    },
+    {
+        id: 14,
+        name: 'Frontend Mentor',
+        bg: 'bg-frontend-mentor',
+        iconName: '/src/assets/icons/icon-front-end-mentors-color.svg',
+        textColor: 'text-dark-grey',
+        border: 'border-border border'
+    },
 ] 
+
+export const platform = [
+    {
+      id: 1,
+      name: "GitHub",
+      avatar: githubIcon,
+    },
+    {
+      id: 2,
+      name: "Twitter",
+      avatar: twitterIcon,
+    },
+    {
+      id: 3,
+      name: "LinkedIn",
+      avatar: linkendInIcon,
+    },
+    {
+      id: 4,
+      name: "YouTube",
+      avatar: youtubeIcon,
+    },
+    {
+      id: 5,
+      name: "Facebook",
+      avatar: facebookIcon,
+    },
+    {
+      id: 6,
+      name: "Twitch",
+      avatar: twitchIcon,
+    },
+    {
+      id: 7,
+      name: "Dev.to",
+      avatar: devtoIcon,
+    },
+    {
+      id: 8,
+      name: "Codewars",
+      avatar: codewarsIcon,
+    },
+    {
+      id: 9,
+      name: "Codepen",
+      avatar: codepenIcon,
+    },
+    {
+      id: 10,
+      name: "freeCodeCamp",
+      avatar: freecodecampIcon,
+    },
+    {
+      id: 11,
+      name: "Gitlab",
+      avatar: gitlabIcon,
+    },
+    {
+      id: 12,
+      name: "Hashnode",
+      avatar: hashnodeIcon,
+    },
+    {
+      id: 13,
+      name: "Stack Overflow",
+      avatar: stackoverflowIcon,
+    },
+    {
+      id: 14,
+      name: "Frontend Mentor",
+      avatar: frontEndMentorIcon,
+    },
+  ];

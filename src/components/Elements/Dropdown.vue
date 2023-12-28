@@ -9,11 +9,11 @@
       >
         <span class="flex items-center">
           <img
-            :src="selected.avatar"
+            :src="selected?.avatar"
             alt=""
             class="h-5 w-5 flex-shrink-0 rounded-full"
           />
-          <span class="ml-3 block truncate">{{ selected.name }}</span>
+          <span class="ml-3 block truncate">{{ selected?.name }}</span>
         </span>
         <span
           class="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-3"
@@ -32,7 +32,7 @@
         >
           <ListboxOption
             as="template"
-            v-for="item in platform"
+            v-for="item in compPlatforms"
             :key="item.id"
             :value="item"
             v-slot="{ active, selected }"
@@ -66,7 +66,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 import {
   Listbox,
   ListboxButton,
@@ -75,101 +75,56 @@ import {
   ListboxOptions,
 } from "@headlessui/vue";
 
-import {
-  githubIcon,
-  twitterIcon,
-  linkendInIcon,
-  youtubeIcon,
-  facebookIcon,
-  twitchIcon,
-  devtoIcon,
-  codewarsIcon,
-  codepenIcon,
-  freecodecampIcon,
-  gitlabIcon,
-  hashnodeIcon,
-  stackoverflowIcon,
-} from "../Icons/DropdownIcons.ts";
+import { store } from "../../store";
+import { PreviewBtn, platform } from "../../mock";
 
-const platform = [
-  {
-    id: 1,
-    name: "GitHub",
-    avatar: githubIcon,
-  },
-  {
-    id: 2,
-    name: "Twitter",
-    avatar: twitterIcon,
-  },
-  {
-    id: 3,
-    name: "LinkedIn",
-    avatar: linkendInIcon,
-  },
-  {
-    id: 4,
-    name: "YouTube",
-    avatar: youtubeIcon,
-  },
-  {
-    id: 5,
-    name: "Facebook",
-    avatar: facebookIcon,
-  },
-  {
-    id: 6,
-    name: "Twitch",
-    avatar: twitchIcon,
-  },
-  {
-    id: 7,
-    name: "Dev.to",
-    avatar: devtoIcon,
-  },
-  {
-    id: 8,
-    name: "Codewars",
-    avatar: codewarsIcon,
-  },
-  {
-    id: 9,
-    name: "Codepen",
-    avatar: codepenIcon,
-  },
-  {
-    id: 10,
-    name: "freeCodeCamp",
-    avatar: freecodecampIcon,
-  },
-  {
-    id: 11,
-    name: "Gitlab",
-    avatar: gitlabIcon,
-  },
-  {
-    id: 12,
-    name: "Hashnode",
-    avatar: hashnodeIcon,
-  },
-  {
-    id: 13,
-    name: "Stack Overflow",
-    avatar: stackoverflowIcon,
-  },
-];
-
-const emit = defineEmits<{
-  (event: "changePlatform", platform: string): void;
+const props = defineProps<{
+  currentLinkId: number;
+  idx: number;
 }>();
 
-const selected = ref(platform[0]);
+const emit = defineEmits<{
+  (event: "changePlatform", platform: PreviewBtn): void;
+}>();
+
+const compPlatforms = ref([])
+const selected = ref();
+
+const updatePlatform = () => {
+  if(store.links?.length > 0){
+    compPlatforms.value = [] 
+    let linkIds = store.links.map(link => link?.id)
+    platform.forEach(elem => {
+      if (!linkIds.includes(elem.id)) {
+        compPlatforms.value.push(elem)
+      }
+    })
+  } else {
+    compPlatforms.value = platform
+  }
+}
 
 watch(
   selected,
   (newVal) => {
-    emit("changePlatform", newVal.name);
+    emit("changePlatform", newVal);
   },
-  { immediate: true }
+  // { immediate: true }
 );
+
+watch(
+  () => store.links,
+  () => {
+    updatePlatform()
+  },
+  {immediate: true, deep: true}
+)
+
+onMounted(() => {
+  if (store.links?.length > 0) {
+    selected.value = store.links[props.idx]
+  } else {
+    selected.value = platform.filter(plat => plat.id == props.currentLinkId)[0]
+  }
+})
 </script>
