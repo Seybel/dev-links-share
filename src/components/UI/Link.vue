@@ -24,7 +24,7 @@
           type="url"
           label="Link"
           id="link"
-          :value="link.link"
+          :value="linkItem.link"
           @value-change="updateDevLink"
         >
           <template v-slot:icon>
@@ -56,14 +56,14 @@ const emit = defineEmits<{
 }>();
 
 const customLinkInput = ref("");
-let link = ref<PreviewBtn>({});
+let link: PreviewBtn = {}
 
 watch(
   () => props.linkItem,
   (newVal) => {
-    link.value = { ...link, ...newVal };
+    link = { ...link, ...newVal };
   },
-  { immediate: true }
+  { immediate: true, deep: true }
 );
 
 const removeLinkHandler = (val: any) => {
@@ -72,12 +72,13 @@ const removeLinkHandler = (val: any) => {
 };
 
 const changePlatformHandler = (val: PreviewBtn) => {
-    emit("updatePlatform", val);
+  link = { ...link, ...val}
+  emit("updatePlatform", val);
 }
 
 const updateDevLink = (val: string) => {
-  customLinkInput.value = val;
-  emit("devLink", customLinkInput.value);
+  link.link = val;
+  emit('updatePlatform', link)
 };
 </script>
 

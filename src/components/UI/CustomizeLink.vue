@@ -89,6 +89,7 @@ const removeLink = (id: number, idx: number) => {
 };
 
 const updatePlatform = (val: PreviewBtn, idx: number) => {
+  allLinks.value[idx] = val
   store.updateLink(val, idx);
   generateNextId()
 };

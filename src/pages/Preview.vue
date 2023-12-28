@@ -25,7 +25,7 @@
                     <h1 class="text-3xl font-bold text-dark-grey text-center" >{{ `${store.firstName} ${store.lastName}` }}</h1>
                     <p class="tetx-base text-grey">{{ store.email }}</p>
                     <div class="w-[100%] mt-10 max-h-[250px] flex flex-col gap-y-5 pr-2.5 overflow-y-auto">
-                        <PreviewLinkButton v-for="(item, idx) in previewBtnObj" :key="idx" height="h-[56px]" :border="item.border" :bg="item.bg" :link-name="item.name" :text-color="item.textColor">
+                        <PreviewLinkButton v-for="(item, idx) in previewBtnObj" :href="item.link" :key="idx" height="h-[56px]" :border="item.border" :bg="item.bg" :link-name="item.name" :text-color="item.textColor">
                             <template v-slot:icon>
                                 <img :src="item.iconName" :alt="item.name">
                             </template>
@@ -51,7 +51,17 @@ const previewBtnObj = ref([])
 
 const filterPreviewObj = (ids: PreviewBtn[]) => {
     let linkIds = ids.map(elem => elem.id)
-    return AllPreviewBtn.filter(btn => linkIds.includes(btn.id))
+    let previewBtns = []
+    AllPreviewBtn.forEach(btn => {
+        if(linkIds.includes(btn.id)){
+        let btnIdx = ids.findIndex(elem => elem.id == btn.id)
+        previewBtns.push({
+            link: ids[btnIdx].link,
+            ...btn
+        })
+        }
+    })
+    return previewBtns
 }
 
 watch(

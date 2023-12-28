@@ -20,7 +20,7 @@
         <foreignObject x="35" y="44%" width="247" height="49%">
           <div class="flex flex-col gap-y-5 overflow-y-auto h-[100%] pr-2.5">
             <foreignObject v-for="(item, idx) in previewBtnObj" :key="idx">
-                <PreviewLinkButton :isPlaceholder="false" :height="`h-[44px]`" :border="item.border" :bg="item.bg" :link-name="item.name" :text-color="item.textColor">
+                <PreviewLinkButton :href="item.link" :isPlaceholder="false" :height="`h-[44px]`" :border="item.border" :bg="item.bg" :link-name="item.name" :text-color="item.textColor">
                     <template v-slot:icon>
                         <img :src="item.iconName" :alt="item.name">
                     </template>
@@ -45,7 +45,17 @@ const previewBtnObj = ref<PreviewBtn[]>([])
 
 const filterPreviewObj = (ids: PreviewBtn[]) => {
   let linkIds = ids.map(elem => elem.id)
-  return AllPreviewBtn.filter(btn => linkIds.includes(btn.id))
+  let previewBtns = []
+  AllPreviewBtn.forEach(btn => {
+    if(linkIds.includes(btn.id)){
+      let btnIdx = ids.findIndex(elem => elem.id == btn.id)
+      previewBtns.push({
+        link: ids[btnIdx].link,
+        ...btn
+      })
+    }
+  })
+  return previewBtns
 }
 
 const dummyAmount = computed(() => {
