@@ -21,13 +21,13 @@
         <div class="flex justify-center transform translate-y-[-150px]">
             <div class="px-12 py-12 bg-white shadow-light-shadow min-h-[260px] w-[349px] rounded-3xl">
                 <div class="flex flex-col gap-y-3 items-center justify-center">
-                    <img class="border-purple rounded-full w-[104px] h-[104px] border-4" :src="store.avatarUrl" alt="">
+                    <img class="border-purple rounded-full w-[104px] h-[104px] border-4" :src="store?.avatarUrl" alt="">
                     <h1 class="text-3xl font-bold text-dark-grey text-center" >{{ `${store.firstName} ${store.lastName}` }}</h1>
                     <p class="tetx-base text-grey">{{ store.email }}</p>
                     <div class="w-[100%] mt-10 max-h-[250px] flex flex-col gap-y-5 pr-2.5 overflow-y-auto">
-                        <PreviewLinkButton v-for="(item, idx) in previewBtnObj" :href="item.link" :key="idx" height="h-[56px]" :border="item.border" :bg="item.bg" :link-name="item.name" :text-color="item.textColor">
+                        <PreviewLinkButton v-for="(item, idx) in previewBtnObj" :href="item?.link" :key="idx" height="h-[56px]" :border="item?.border" :bg="item?.bg" :link-name="item?.name" :text-color="item?.textColor">
                             <template v-slot:icon>
-                                <img :src="item.iconName" :alt="item.name">
+                                <img :src="item?.iconName" :alt="item?.name">
                             </template>
                         </PreviewLinkButton>
                     </div>
@@ -43,15 +43,15 @@ import PreviewLinkButton from '../components/Elements/PreviewLinkButton.vue';
 import { AllPreviewBtn, PreviewBtn } from "../mock";
 import { useRouter } from 'vue-router'
 import { store } from '../store';
-import { computed, ref, watch } from 'vue';
+import { ref, watch } from 'vue';
 
 const router = useRouter();
 
-const previewBtnObj = ref([])
+const previewBtnObj = ref<PreviewBtn[]>([])
 
 const filterPreviewObj = (ids: PreviewBtn[]) => {
     let linkIds = ids.map(elem => elem.id)
-    let previewBtns = []
+    let previewBtns: PreviewBtn[] = []
     AllPreviewBtn.forEach(btn => {
         if(linkIds.includes(btn.id)){
         let btnIdx = ids.findIndex(elem => elem.id == btn.id)

@@ -24,7 +24,7 @@
           :idx="index"
           :linkItem="link"
           :currentLinkId="currentLinkId"
-          @remove-link="removeLink($event, index)"
+          @remove-link="removeLink(index)"
           @update-platform="updatePlatform($event, index)"
           @dev-link="updateDevLink"
         />
@@ -40,17 +40,16 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, onMounted, onBeforeMount } from "vue";
+import { ref, onMounted } from "vue";
 import Button from "../Elements/Button.vue";
 import EmptyLink from "../UI/EmptyLink.vue";
 import Link from "./Link.vue";
-import { generateRandomId } from "../../utils/randomId";
 import { store } from "../../store";
 import { AllPreviewBtn, PreviewBtn, platform } from "../../mock";
 
 const previewBg = { width: "46rem", height: "53rem" };
-const nextLinkId = ref(null);
-const currentLinkId = ref(null)
+const nextLinkId = ref<number>(0);
+const currentLinkId = ref<number>(0)
 
 let allLinks = ref<PreviewBtn[]>([]);
 
@@ -63,10 +62,10 @@ onMounted(() => {
 })
 
 const addNewLink = () => {
+  if(store.links?.length > 14) return
   currentLinkId.value = nextLinkId.value
   const next = platform.filter(elem => elem.id == nextLinkId.value)[0]
   const newLink = {
-    name: "",
     link: "",
     ...next,
   };
@@ -82,7 +81,7 @@ const generateNextId = () => {
   nextLinkId.value = unSelectedPlatformIds[0]
 }
 
-const removeLink = (id: number, idx: number) => {
+const removeLink = (idx: number) => {
   allLinks.value.splice(idx, 1);
   store.removeLink(idx)
   generateNextId()

@@ -33,7 +33,7 @@
           <ListboxOption
             as="template"
             v-for="item in compPlatforms"
-            :key="item.id"
+            :key="item?.id"
             :value="item"
             v-slot="{ active, selected }"
           >
@@ -45,7 +45,7 @@
             >
               <div class="flex items-center">
                 <img
-                  :src="item.avatar"
+                  :src="item?.avatar"
                   alt=""
                   class="h-5 w-5 flex-shrink-0 rounded-full"
                 />
@@ -54,7 +54,7 @@
                     selected ? 'font-semibold' : 'font-normal',
                     'ml-3 block truncate',
                   ]"
-                  >{{ item.name }}</span
+                  >{{ item?.name }}</span
                 >
               </div>
             </li>
@@ -66,7 +66,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref, watch } from "vue";
+import { onMounted, ref, watch } from "vue";
 import {
   Listbox,
   ListboxButton,
@@ -87,7 +87,7 @@ const emit = defineEmits<{
   (event: "changePlatform", platform: PreviewBtn): void;
 }>();
 
-const compPlatforms = ref([])
+const compPlatforms = ref<PreviewBtn[]>([])
 const selected = ref();
 
 const updatePlatform = () => {
@@ -109,7 +109,6 @@ watch(
   (newVal) => {
     emit("changePlatform", newVal);
   },
-  // { immediate: true }
 );
 
 watch(
