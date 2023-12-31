@@ -14,6 +14,22 @@ import {
     stackoverflowIcon,
     frontEndMentorIcon,
   } from "./components/Icons/DropdownIcons";
+import { 
+    codepenIconLight,
+    codewarsIconLight,
+    devtoIconLight,
+    facebookIconLight,
+    freecodecampIconLight,
+    frontEndMentorIconLight,
+    githubIconLight,
+    gitlabIconLight,
+    hashnodeIconLight,
+    linkendInIconLight,
+    stackoverflowIconLight,
+    twitchIconLight,
+    twitterIconLight,
+    youtubeIconLight
+  } from "./components/Icons/PreviewIcons";
 export interface PreviewBtn {
     id?: number,
     name?: string,
@@ -30,7 +46,7 @@ export const AllPreviewBtn: PreviewBtn[] = [
         id: 1,
         name: 'GitHub',
         bg: 'bg-github',
-        iconName: '/src/assets/icons/icon-github-color.svg',
+        iconName: githubIconLight,
         textColor: 'text-white',
         border: ''
     },
@@ -38,7 +54,7 @@ export const AllPreviewBtn: PreviewBtn[] = [
         id: 2,
         name: 'Twitter',
         bg: 'bg-twitter',
-        iconName: '/src/assets/icons/icon-twitter-color.svg',
+        iconName: twitterIconLight,
         textColor: 'text-white',
         border: ''
     },
@@ -46,7 +62,7 @@ export const AllPreviewBtn: PreviewBtn[] = [
         id: 3,
         name: 'LinkedIn',
         bg: 'bg-linkedin',
-        iconName: '/src/assets/icons/icon-linkedin-color.svg',
+        iconName: linkendInIconLight,
         textColor: 'text-white',
         border: ''
     },
@@ -54,7 +70,7 @@ export const AllPreviewBtn: PreviewBtn[] = [
         id: 4,
         name: 'YouTube',
         bg: 'bg-youtube',
-        iconName: '/src/assets/icons/icon-youtube-color.svg',
+        iconName: youtubeIconLight,
         textColor: 'text-white',
         border: ''
     },
@@ -62,7 +78,7 @@ export const AllPreviewBtn: PreviewBtn[] = [
         id: 5,
         name: 'Facebook',
         bg: 'bg-facebook',
-        iconName: '/src/assets/icons/icon-facebook-color.svg',
+        iconName: facebookIconLight,
         textColor: 'text-white',
         border: ''
     },
@@ -70,7 +86,7 @@ export const AllPreviewBtn: PreviewBtn[] = [
         id: 6,
         name: 'Twitch',
         bg: 'bg-twitch',
-        iconName: '/src/assets/icons/icon-twitch-color.svg',
+        iconName: twitchIconLight,
         textColor: 'text-white',
         border: ''
     },
@@ -78,7 +94,7 @@ export const AllPreviewBtn: PreviewBtn[] = [
         id: 7,
         name: 'Dev.to',
         bg: 'bg-devto',
-        iconName: '/src/assets/icons/icon-devto-color.svg',
+        iconName: devtoIconLight,
         textColor: 'text-white',
         border: ''
     },
@@ -86,7 +102,7 @@ export const AllPreviewBtn: PreviewBtn[] = [
         id: 8,
         name: 'Codewars',
         bg: 'bg-codewars',
-        iconName: '/src/assets/icons/icon-codewars-color.svg',
+        iconName: codewarsIconLight,
         textColor: 'text-white',
         border: ''
     },
@@ -94,7 +110,7 @@ export const AllPreviewBtn: PreviewBtn[] = [
         id: 9,
         name: 'Codepen',
         bg: 'bg-dark-grey',
-        iconName: '/src/assets/icons/icon-codepen-color.svg',
+        iconName: codepenIconLight,
         textColor: 'text-white',
         border: ''
     },
@@ -102,7 +118,7 @@ export const AllPreviewBtn: PreviewBtn[] = [
         id: 10,
         name: 'freeCodeCamp',
         bg: 'bg-freecodecamp',
-        iconName: '/src/assets/icons/icon-freecodecamp-color.svg',
+        iconName: freecodecampIconLight,
         textColor: 'text-white',
         border: ''
     },
@@ -110,7 +126,7 @@ export const AllPreviewBtn: PreviewBtn[] = [
         id: 11,
         name: 'Gitlab',
         bg: 'bg-gitlab',
-        iconName: '/src/assets/icons/icon-gitlab-color.svg',
+        iconName: gitlabIconLight,
         textColor: 'text-white',
         border: ''
     },
@@ -118,7 +134,7 @@ export const AllPreviewBtn: PreviewBtn[] = [
         id: 12,
         name: 'Hashnode',
         bg: 'bg-hashnode',
-        iconName: '/src/assets/icons/icon-hashnode-color.svg',
+        iconName: hashnodeIconLight,
         textColor: 'text-white',
         border: ''
     },
@@ -126,7 +142,7 @@ export const AllPreviewBtn: PreviewBtn[] = [
         id: 13,
         name: 'Stack Overflow',
         bg: 'bg-stack-overflow',
-        iconName: '/src/assets/icons/icon-stack-overflow-color.svg',
+        iconName: stackoverflowIconLight,
         textColor: 'text-white',
         border: ''
     },
@@ -134,7 +150,7 @@ export const AllPreviewBtn: PreviewBtn[] = [
         id: 14,
         name: 'Frontend Mentor',
         bg: 'bg-frontend-mentor',
-        iconName: '/src/assets/icons/icon-front-end-mentors-color.svg',
+        iconName: frontEndMentorIconLight,
         textColor: 'text-dark-grey',
         border: 'border-border border'
     },

@@ -37,7 +37,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, watch } from "vue";
+import { ref, watch } from "vue";
 import LabeledInput from "../Form/LabeledInput.vue";
 import Dropdown from "../Elements/Dropdown.vue";
 import { isNumber } from "../../utils/randomId";
@@ -55,7 +55,6 @@ const emit = defineEmits<{
   (event: "devLink", devLink: string): void;
 }>();
 
-const customLinkInput = ref("");
 let link: PreviewBtn = {}
 
 watch(

@@ -32,7 +32,7 @@ const previewStyle = computed(() => {
 })
 
 
-const imageValue = ref<string | ArrayBuffer | null>('') 
+const imageValue = ref<string>('') 
 
 const handleInput = (event: Event) => {
     const input = event.target as HTMLInputElement;
