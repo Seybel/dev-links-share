@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue';
+import { onBeforeMount, ref, watch } from 'vue';
 import Navbar from './components/Layout/Navbar.vue';
 import { useRouter } from 'vue-router';
 
@@ -16,7 +16,7 @@ const router = useRouter();
 watch(
   () => router.currentRoute.value.name,
   (currentRouteName: any) => {
-    const hideNavbarRoutes = ['Devlinks.Preview'];
+    const hideNavbarRoutes = ['Devlinks.Preview', 'Devlinks.Login'];
     showNavbar.value = !hideNavbarRoutes.includes(currentRouteName);
   }
 );

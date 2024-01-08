@@ -2,6 +2,8 @@ import { reactive } from "vue";
 import { PreviewBtn } from "./mock";
 
 interface Store {
+    isAuthenticated?: boolean 
+    access_token?: string
     links: PreviewBtn[]
     firstName: string
     lastName: string
@@ -14,6 +16,8 @@ interface Store {
     setlastName: (name: string) => void
     setEamil: (name: string) => void
     setAvatar: (name: string) => void
+    setAuth: (val: boolean) => void
+    setToken: (val: string) => void
 }
 
 export const store = reactive<Store>({
@@ -50,5 +54,11 @@ export const store = reactive<Store>({
     },
     setAvatar(val){
         this.avatarUrl = val
+    },
+    setAuth(val){
+        this.isAuthenticated = val
+    },
+    setToken(val){
+        this.access_token = val
     }
 })
